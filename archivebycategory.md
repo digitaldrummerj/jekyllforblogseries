@@ -1,8 +1,9 @@
 ---
 layout: page
 title: Post by Category
-permalink: /categoryview/
+permalink: /archivebycategory/
 active: archivebycategory
+published: true
 sitemap: false
 ---
 <div>
