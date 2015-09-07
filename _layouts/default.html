@@ -1,80 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
-
-    <meta name="author" content="{{ site.name }}"/>
-    <meta name="description" content="{{ site.description }}">
-
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}"
-          href="{{ site.baseurl }}/feed.xml"/>
-
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-</head>
-
-<body>
-<div class="wrapper-masthead">
-    <div class="container">
-        <header class="masthead clearfix">
-            <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}"/></a>
-
-            <div class="site-info">
-                <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-
-                <p class="site-description">{{ site.description }}</p>
-            </div>
-
-            <nav>
-                <a href="{{ site.baseurl }}/">Blog</a>
-                <a href="{{ site.baseurl }}/about">About</a>
-                <a href="{{ site.baseurl }}/portfolio">Portfolio </a>
-            </nav>
-        </header>
-        <div class="grid" id="searchBar">
-            <div>
-                <div id="search">
-                    <form role="search" method="get" action="{{site.baseurl}}/search/">
-                        <input id="searchString" name="searchString"
-                               placeholder="Be a Better Developer, etc." type="text">
-                        <input id="searchButton" name="googleSearchName" type="button" value="Search">
-                    </form>
-                </div>
-
-                <div id="archives">
-                    browse by <a title="The complete archive of {{ site.name }}'s Blog by category"
-                                 href="{{ site.url}}{{site.baseurl}}/categoryview">category</a>
-                    or <a title="The complete archive of
-            {{ site.name }}'s Blog by month"
-                          href="{{ site.url}}{{site.baseurl}}/monthview">date</a>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-<div id="main" role="main" class="container">
-    {{ content }}
-</div>
-
-<div class="wrapper-footer">
-    <div class="container">
-        <footer class="footer">
-            {% include svg-icons.html %}
-        </footer>
-    </div>
-</div>
-
-{% include analytics.html %}
-</body>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ page.title }} | {{ site.name }}</title>
+        {% if site.links.github %}
+          <meta name="author" content="{{ site.links.github }}">
+        {% endif %}
+        <meta name="title" content="{{ page.title }}" >
+        <link rel="icon" type="image/png" href="{{site.url}}/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% if site.base_url %}
+        <link rel="canonical" href="{{ site.base_url }}" />
+        {% endif %}
+        {% include ssn.html %}
+        {% include disquscommentcount.html %}
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    </head>
+    <body class="wrap">
+      <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+      {% include header.html %}
+      <section class="content">
+        {{ content }}
+      </section>
+      <footer class="grid site-footer">
+        <p>&copy;&nbsp;{{ site.name }}</p>
+          <p><small>Disclaimer:  The opinions expressed herein are my own personal opinions and do not represent my employer's view in any way.</small></p>
+              {% include svg-icons.html %}
+      </footer>
+      {% if site.google_analytics %}
+        {% include analytics.html %}
+      {% endif %}
+      <script>
+          document.addEventListener("DOMContentLoaded", function(event) {
+              var hidden = true;
+              var menu = document.querySelector(".main-nav");
+              var opener = document.querySelector(".opener");
+              opener.addEventListener("click", function(e){
+                  e.preventDefault();
+                  if(hidden){
+                      menu.setAttribute("class", "main-nav active-menu");
+                  }else{
+                      menu.setAttribute("class", "main-nav");
+                  }
+                  hidden = !hidden;
+              });
+          });
+      </script>
+    </body>
 </html>

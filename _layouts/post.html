@@ -1,17 +1,38 @@
 ---
 layout: default
 ---
-
-<article class="post">
-  <h1>{{ page.title }}</h1>
-
-  <div class="entry">
-    {{ content }}
-  </div>
-
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>
-
-  {% include disqus.html disqus_identifier=page.disqus_identifier %}
-</article>
+<div id="home" class="grid post">
+	<div class="unit whole single-post-excerpt">
+		<article>
+			<header>
+				<h2>{{ page.title }}</h2>
+				<div class="meta-info">
+					<span class="meta">
+						<time class="timeago postlist-meta" datetime="{{ page.date | date: "%Y-%m-%d" }}"><i class="fa fa-calendar"></i>{{ page.date | date: "%B %-d, %Y" }}</time>
+						 <a class="sharer facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+window.location.href,'_blank','height=300,width=600');return false;"><i class="fa fa-facebook"></i></a>
+			
+						{% if site.twitter %}
+							<a class="sharer twitter" href="#" target="_blank" onclick="window.open('https://twitter.com/share?text={{page.title}}&url='+window.location.href+'&via={{ site.twitter }}','_blank','height=300,width=600');return false;"><i class="fa fa-twitter"></i></a>
+						{% else %}
+							<a class="sharer twitter" href="#" target="_blank" onclick="window.open('https://twitter.com/share?url='+window.location.href,'_blank','height=300,width=600');return false;"><i class="fa fa-twitter"></i></a>
+						{% endif %}
+					</span>
+					{% if page.categories and page.categories.size > 0 %}
+						<div class="tags">
+							Tagged:
+							{% for category in page.categories %}
+							<span><a href="{{site.url}}/category/{{ category  }}/"><i class="fa fa-tag"></i> {{ category | replace:'-', ' ' }} </a></span>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+			</header>
+			<section>		
+				{{ content }}
+			</section>
+		    <footer>
+		        {% include disqus.html disqus_identifier=page.disqus_identifier %}
+		    </footer>
+		</article>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<div id="home" class="grid post">
+    <div class="unit whole">
+
+        <h1 class="pageTitle">Category: {{ page.title }}</h1>
+
+
+        {% unless page.content == '' %}
+        <p class="description">{{ page.content }}</p>
+        {% endunless %}
+
+        {% for post in (site.categories.[page.type] | sort: title)%}
+        <h2><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }} - <span>{{ post.date |  date: "%B %e" }}</span></a></h2>
+
+        <p class="description">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+
+        {% endfor %}
+    </div>
+</div>

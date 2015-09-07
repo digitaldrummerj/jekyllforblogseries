@@ -1,18 +1,50 @@
 ---
-layout: default
+layout: home
+title: Home
+sitemap:
+priority: 1.0
+changefreq: weekly
+lastmod: 2014-07-07T16:57:30+05:30
+active: home
 ---
+{% for post in paginator.posts %}
+<div class="post unit whole single-post-excerpt">
+	<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+	<div class="meta-info">
+		<span class="meta">
+			<time class="timeago postlist-meta" datetime="{{ post.date | date: "%Y-%m-%d" }}"><i class="fa fa-calendar"></i>{{ post.date | date: "%B %-d, %Y" }}</time>
+			 <a class="sharer facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+window.location.href,'_blank','height=300,width=600');return false;"><i class="fa fa-facebook"></i></a>
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">    
-      
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+			{% if site.twitter %}
+				<a class="sharer twitter" href="#" target="_blank" onclick="window.open('https://twitter.com/share?text={{page.title}}&url='+window.location.href+'&via={{ site.twitter }}','_blank','height=300,width=600');return false;"><i class="fa fa-twitter"></i></a>
+			{% else %}
+				<a class="sharer twitter" href="#" target="_blank" onclick="window.open('https://twitter.com/share?url='+window.location.href,'_blank','height=300,width=600');return false;"><i class="fa fa-twitter"></i></a>
+			{% endif %}
+			</span>
+		{% if post.categories and post.categories.size > 0 %}
+			<div class="tags">
+				Tagged:
+				{% for category in post.categories %}
+				<span><a href="{{site.url}}/category/{{ category  }}/"><i class="fa fa-tag"></i> {{ category | replace:'-', ' ' }} </a></span>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
 
-      <div class="entry">
-        {{ post.content | truncatewords:40}}
-      </div>
-      
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
+	<p class="description">{{ post.content }}</p>
+    {% if site.disquscommentcount %}
+    <p> <a href="{{ site.url }}{{ post.url }}#disqus" class="read-more">Add/View Comments</a> [<a href="{{ post.url }}#disqus_thread" class="read-more"></a>]</p>
+    {% else if site.disqus  %}
+    <p> <a href="{{ site.url }}{{ post.url }}#disqus" class="read-more">Add/View Comments</a></p>
+    {% endif %}
+</div>
+{% endfor %}
+<div class="unit whole paginator">
+	{% if paginator.previous_page %}
+	<a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
+	{% endif %}
+	<span>Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+	{% if paginator.next_page %}
+	<a href="{{ paginator.next_page_path }}" class="next">Next</a>
+	{% endif %}
 </div>

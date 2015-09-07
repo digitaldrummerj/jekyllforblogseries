@@ -1,0 +1,55 @@
+$body-width: 960px;
+$padding-left: 5px;
+$nav-back-color: #333838;
+$single-post-padding: 5px;
+$border-radius: 4px;
+
+$doc-font-size: 16;
+$doc-line-height: 26;
+$paragraph-indent: true !default;
+
+
+// Colors
+$blue: #4183C4;
+
+// Grays
+$black: #000;
+$darkerGray: #222;
+$darkGray: #333;
+$gray: #666;
+$lightGray: #eee;
+$white: #fff;
+$chocolate: #5b2d26;
+$yellow: #fbba2c;
+$burntSienna: #83382b;
+$orange: #e2842c;
+$darkbrown: #291f16;
+$darkteal: #575e5b;
+
+
+
+$links: #e2842c;
+$linkHover: #fea14b;
+$linkVisited: #c5752a;
+$topBar: #575e5b;
+$searchBar: #c6c6c6;
+$searchStringBackground: #f6f5ea;
+$searchButtonBackground: #83382b;
+$bodyPre: #fcfcfc;
+$preTagBackground: #dbdbdb;
+$preTagBorder: #e0e0e0;
+$footerBorder: #5a4d41;
+$inputBorder: #cfcfcf;
+$blogBody: #F8F1EB;
+// Font stacks
+$helvetica: Helvetica, Arial, sans-serif;
+$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, serif;
+$fontFamily: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+// Mobile breakpoints
+/*@mixin mobile {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}
+*/

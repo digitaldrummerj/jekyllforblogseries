@@ -1,0 +1,43 @@
+<header>
+    <div id="topbar">
+
+    <h1 class="site-title"> <span><img class="site-avatar" src="{{ site.avatar }}"/></span><span><a href="{{site.url }}/">{{ site.name }}</a></span><p class="blog-description">{{ site.description}}</p></h1>
+    </div>
+
+      <nav class="main-nav">
+    <a href="#" class="opener show-on-mobiles">...</a>
+    <div class="clear-opener show-on-mobiles"></div>
+    <div class="grid">
+      <ul>
+          <li><a href="{{ site.url }}/" {% if page.active == "home" %} class="current" {% endif %}>Blog</a></li>
+          <li><a href="{{ site.url }}/about" {% if page.active == "about" %} class="current" {% endif %}>About</a></li>
+          <li><a href="{{ site.url}}/speaking" {% if page.active == "speaking" %} class="current" {% endif %}>Speaking</a></li>
+          <li>
+              <a  {% if page.active == "feed" %} class="current" {% endif %}
+              {% if site.footer-links.feedburner %}
+              href="{{site.footer-links.feedburner}}"
+              {% else if site.footer-links.rss %}
+              href="{{ site.url }}/feed.xml"
+              {% endif %}
+              >Feed</a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+
+    <div class="grid" id="searchBar">
+        <div>
+            <div id="search">
+                <form role="search" method="get" action="/search/">
+                    <input id="searchString" name="searchString" placeholder="Learn Ionic, Be a Better Developer, etc." type="text">
+                    <input id="searchButton" name="googleSearchName" type="submit" value="Search">
+                </form>
+            </div>
+            <div id="archives">
+                browse by <a title="The complete archive of {{ site.name }}'s Blog by category"
+                             href="{{ site.url}}/categoryview">category</a> or <a
+                    title="The complete archive of {{ site.name }}'s Blog by month" href="{{ site.url}}/monthview">date</a>
+            </div>
+        </div>
+    </div>
+</header>
