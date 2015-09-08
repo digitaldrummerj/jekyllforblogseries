@@ -18,7 +18,7 @@ sitemap: false
 <div id="index">
 
 {% for tag in tags %}
-<a name="{{ tag[0] }}"></a><h2>{{ tag[0] | replace:'-', ' ' }} <i class="badge">{{ tag | last | size }}</i> </h2>
+<a name="{{ tag[0] | slugify }}"></a><h2>{{ tag[0] | replace:'-', ' ' }} <i class="badge">{{ tag | last | size }}</i> </h2>
 
 {% for post in sorted_posts %}
 {%if post.categories contains tag[0]%}
